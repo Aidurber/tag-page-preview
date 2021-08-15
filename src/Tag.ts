@@ -1,3 +1,5 @@
+import { isAnchorTag } from "./utils/guards";
+
 export class Tag {
   private _text: string;
   constructor(tag: string) {
@@ -16,5 +18,30 @@ export class Tag {
    */
   get tag() {
     return `#${this._text}`;
+  }
+  /**
+   * Determine whether a clicked element was an Obsidian tag
+   * @param target - Click target
+   * @returns
+   */
+  static isTagNode(target: HTMLElement | Tag): boolean {
+    if (target instanceof Tag) return true;
+    return (
+      target.classList.contains("tag") ||
+      target.classList.contains("cm-hashtag")
+    );
+  }
+  /**
+   * Generate a Tag from an element
+   * @param element - Clicked element
+   * @returns
+   */
+  static create(element: HTMLElement | Tag): Tag {
+    if (element instanceof Tag) return element;
+    let content = element.textContent;
+    if (isAnchorTag(element)) {
+      content = content.replace("#", "");
+    }
+    return new Tag(content);
   }
 }

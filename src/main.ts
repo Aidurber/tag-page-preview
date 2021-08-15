@@ -1,7 +1,7 @@
 import { Plugin } from "obsidian";
+import { Tag } from "./Tag";
 import { TagDetailsModal } from "./TagDetailsModal";
 import { TagPageFinder } from "./TagPageFinder";
-import { getTagContent, isTagElement } from "./utils/isTagElement";
 
 export default class TagPagePreview extends Plugin {
   async onload() {
@@ -11,8 +11,8 @@ export default class TagPagePreview extends Plugin {
   }
 
   private handleClick(target: HTMLElement) {
-    if (!isTagElement(target)) return;
-    const tag = getTagContent(target);
+    if (!Tag.isTagNode(target)) return;
+    const tag = Tag.create(target);
     new TagDetailsModal(this.app, tag, new TagPageFinder(this.app, tag)).open();
   }
 }
