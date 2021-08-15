@@ -1,8 +1,7 @@
-import { App, Modal, CachedMetadata, getLinkpath } from "obsidian";
+import { App, Modal } from "obsidian";
 import { Tag } from "./Tag";
 import { TagPageFinder } from "./TagPageFinder";
-import { getFileName, removeMarkdownExtension } from "./utils/normalise";
-import { createAnchor } from "./utils/render";
+import { createLink } from "./utils/render";
 
 export class TagDetailsModal extends Modal {
   constructor(app: App, private tag: Tag, private finder: TagPageFinder) {
@@ -23,8 +22,7 @@ export class TagDetailsModal extends Modal {
       const list = document.createElement("ol");
       pages.forEach((page) => {
         const el = document.createElement("li");
-        const basePath = removeMarkdownExtension(page.path);
-        const link = createAnchor(getFileName(basePath), basePath, true);
+        const link = createLink(this.app, page, () => this.close());
         el.appendChild(link);
         list.appendChild(el);
       });
