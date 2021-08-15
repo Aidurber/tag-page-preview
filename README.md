@@ -1,6 +1,15 @@
 # Tag Page Preview
 
-Clicking a tag opens a dialog listing pages that use that tag
+Clicking a tag opens a dialog listing pages that use that tag.
+
+**To Do**
+- [ ] Add some documentation
+- [ ] Finish build pipleline
+- [ ] Publish plugin
+- [ ] Figure out how to add previews to links
+- [ ] Figure out how to test an obsidian plugin
+
+
 
 ![](./media/screenshot.jpg)
 
