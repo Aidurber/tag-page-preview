@@ -38,3 +38,19 @@ export function createLink(
   };
   return link;
 }
+
+type HeaderType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export function createHeader(
+  type: HeaderType,
+  content: string
+): HTMLHeadingElement {
+  const header = document.createElement(type);
+  header.setText(content);
+  return header;
+}
+
+export function createParagraph(content: string): HTMLParagraphElement {
+  const paragraph = document.createElement("p");
+  paragraph.setText(content);
+  return paragraph;
+}

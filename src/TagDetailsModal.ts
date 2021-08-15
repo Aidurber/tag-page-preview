@@ -1,36 +1,45 @@
 import { App, Modal } from "obsidian";
 import { Tag } from "./Tag";
 import { TagPageFinder } from "./TagPageFinder";
-import { createLink } from "./utils/render";
+import { createHeader, createLink, createParagraph } from "./utils/render";
 
 export class TagDetailsModal extends Modal {
   constructor(app: App, private tag: Tag, private finder: TagPageFinder) {
     super(app);
   }
   onOpen() {
-    let { contentEl } = this;
-    const header = document.createElement("h2");
-    header.setText(`Pages with ${this.tag.tag}`);
-    contentEl.appendChild(header);
-
-    const pages = this.finder.pages();
-    if (!pages.length) {
-      const emptyMessage = document.createElement("p");
-      emptyMessage.setText("There are no pages containing this tag");
-      contentEl.appendChild(emptyMessage);
-    } else {
-      const list = document.createElement("ol");
-      pages.forEach((page) => {
-        const el = document.createElement("li");
-        const link = createLink(this.app, page, () => this.close());
-        el.appendChild(link);
-        list.appendChild(el);
-      });
-      contentEl.appendChild(list);
-    }
+    this.renderContent();
   }
+
   onClose() {
     let { contentEl } = this;
     contentEl.empty();
+  }
+
+  private renderContent() {
+    let { contentEl } = this;
+    const pages = this.finder.pages();
+    const fragment = document.createDocumentFragment();
+    const header = createHeader("h2", `Pages with ${this.tag.tag}`);
+    fragment.appendChild(header);
+    if (pages.length > 0) {
+      const list = document.createElement("ol");
+      for (let page of pages) {
+        const el = document.createElement("li");
+        const link = createLink(this.app, page, () => this.close());
+        el.appendChild(link);
+        fragment.appendChild(el);
+      }
+      list.appendChild(fragment);
+      fragment.appendChild(list);
+      contentEl.appendChild(fragment);
+      return;
+    }
+    const emptyMessage = createParagraph(
+      "There are no pages containing this tag"
+    );
+    fragment.appendChild(emptyMessage);
+
+    contentEl.appendChild(fragment);
   }
 }

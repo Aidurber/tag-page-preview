@@ -5,9 +5,8 @@ import { getAllFileTags } from "./utils/getAllFileTags";
 export class TagPageFinder {
   constructor(protected app: App, protected tag: Tag) {}
 
+  // TODO Optimise this data structure
   pages(): TFile[] {
-    console.log(this.app);
-
     const fileTags = getAllFileTags(this.app);
     let matches: TFile[] = [];
     for (let i = 0, len = fileTags.length; i < len; i++) {

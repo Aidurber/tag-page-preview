@@ -6,12 +6,15 @@ export interface TTagFile {
 }
 export function getAllFileTags(app: App): TTagFile[] {
   const files = app.vault.getFiles();
-  const cache = files
-    .map((file) => ({
-      file,
-      tags: app.metadataCache.getFileCache(file)?.tags?.map((tag) => tag.tag),
-    }))
-    .filter((f) => f.tags?.length > 0);
+  let cache: TTagFile[] = [];
+  for (let file of files) {
+    if (!file) continue;
+    const tags = app.metadataCache
+      .getFileCache(file)
+      ?.tags?.map((tag) => tag.tag);
+    if (!tags?.length) continue;
+    cache.push({ file, tags });
+  }
 
   return cache;
 }
