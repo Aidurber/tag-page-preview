@@ -1,16 +1,18 @@
 {
   "name": "tag-page-preview",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Clicking a tag opens a dialog listing pages that use that tag",
   "main": "lib/main.js",
   "license": "MIT",
   "scripts": {
     "build": "obsidian-plugin build src/main.ts",
-    "dev": "obsidian-plugin dev src/main.ts"
+    "dev": "obsidian-plugin dev src/main.ts",
+    "release": "standard-version"
   },
   "devDependencies": {
-    "typescript": "^4.1.5",
+    "obsidian": "obsidianmd/obsidian-api",
     "obsidian-plugin-cli": "^0.8.0",
-    "obsidian": "obsidianmd/obsidian-api"
+    "standard-version": "^9.3.1",
+    "typescript": "^4.1.5"
   }
 }
