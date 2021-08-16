@@ -5,11 +5,15 @@
   "main": "lib/main.js",
   "license": "MIT",
   "scripts": {
-    "build": "obsidian-plugin build src/main.ts",
-    "dev": "obsidian-plugin dev src/main.ts",
+    "dev": "rollup --config rollup.config.js -w",
+    "build": "rollup --config rollup.config.js",
     "release": "standard-version"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^18.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "@rollup/plugin-typescript": "^8.2.1",
+    "rollup": "^2.32.1",
     "obsidian": "obsidianmd/obsidian-api",
     "obsidian-plugin-cli": "^0.8.0",
     "standard-version": "^9.3.1",
