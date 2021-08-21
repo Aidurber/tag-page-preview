@@ -1,12 +1,28 @@
 import { App, TFile } from "obsidian";
 
+/**
+ * Check if the current OS is Windows
+ * @returns
+ */
 function isWindows(): boolean {
   return navigator.platform.includes("Win");
 }
+
+/**
+ * Check if the event was CTRL for Windows or Command for macOS
+ * @param event - Mouse Event
+ * @returns
+ */
 function isMetaKey(event: MouseEvent): boolean {
-  if (isWindows()) return event.ctrlKey;
-  return event.metaKey;
+  return isWindows() ? event.ctrlKey : event.metaKey;
 }
+/**
+ * Open an Obsidian link
+ * @param app - Obsidian App object
+ * @param dest  - Link href
+ * @param currFile - Current open file
+ * @param event - Click event
+ */
 async function openLink(
   app: App,
   dest: string,
@@ -32,7 +48,6 @@ export function createLink(
   file: TFile,
   onClick?: (e: MouseEvent) => void
 ): HTMLAnchorElement {
-  console.log(navigator.platform);
   const link = createTextContent("a", file.basename);
   link.style.cursor = "pointer";
   link.dataset.href = file.path;
@@ -47,6 +62,12 @@ export function createLink(
   return link;
 }
 
+/**
+ * Utility to quickly create a DOM element and set the text content for it
+ * @param element - Element to render
+ * @param content - Content to embed into the element
+ * @returns
+ */
 export function createTextContent<K extends keyof HTMLElementTagNameMap>(
   element: K,
   content: string
