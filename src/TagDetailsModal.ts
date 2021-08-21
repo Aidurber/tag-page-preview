@@ -1,11 +1,16 @@
 import { App, Modal, TFile } from "obsidian";
 import { Tag } from "./Tag";
-import { getAllFilesMatchingTag } from "./utils/getAllFileTags";
+import { getAllFilesMatchingTag } from "./utils/getAllFilesMatchingTag";
 import { createTextContent, createLink } from "./utils/render";
 
 export class TagDetailsModal extends Modal {
-  constructor(app: App, private tag: Tag) {
+  private tag: Tag;
+  constructor(app: App) {
     super(app);
+  }
+  setTag(tag: Tag): TagDetailsModal {
+    this.tag = tag;
+    return this;
   }
   onOpen() {
     this.renderContent();
