@@ -8,6 +8,14 @@ const manifestUpdater = {
 };
 
 module.exports = {
-  bumpFiles: [versionUpdater, manifestUpdater],
+  bumpFiles: [
+    {
+      filename: "package.json",
+      // The `json` updater assumes the version is available under a `version` key in the provided JSON document.
+      type: "json",
+    },
+    versionUpdater,
+    manifestUpdater,
+  ],
   packageFiles: [versionUpdater, manifestUpdater],
 };
