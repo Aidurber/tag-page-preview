@@ -1,5 +1,3 @@
-import { isAnchorTag } from "./utils/guards";
-
 export class Tag {
   private _text: string;
   constructor(tag: string) {
@@ -38,10 +36,7 @@ export class Tag {
    */
   static create(element: HTMLElement | Tag): Tag {
     if (element instanceof Tag) return element;
-    let content = element.textContent;
-    if (isAnchorTag(element)) {
-      content = content.replace("#", "");
-    }
+    const content = element.textContent.replace("#", "");
     return new Tag(content);
   }
 }
