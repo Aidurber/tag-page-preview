@@ -1,11 +1,11 @@
 {
   "name": "tag-page-preview",
-  "version": "0.0.8",
+  "version": "0.0.1",
   "description": "Clicking a tag opens a dialog listing pages that use that tag",
   "main": "lib/main.js",
   "license": "MIT",
   "scripts": {
-    "dev": "rollup --config rollup.config.js -w",
+    "dev": "obsidian-plugin dev src/main.ts",
     "build": "rollup --config rollup.config.js",
     "release": "standard-version"
   },
