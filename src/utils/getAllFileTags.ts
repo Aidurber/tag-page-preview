@@ -1,20 +1,21 @@
-import { App, TagCache, TFile } from "obsidian";
+import { App, TFile, getAllTags } from "obsidian";
+import { Tag } from "../Tag";
 
 export interface TTagFile {
   file: TFile;
   tags: string[];
 }
-export function getAllFileTags(app: App): TTagFile[] {
+export function getAllFilesMatchingTag(app: App, tag: Tag): Set<TFile> {
   const files = app.vault.getFiles();
-  let cache: TTagFile[] = [];
+  const result: Set<TFile> = new Set();
   for (let file of files) {
-    if (!file) continue;
-    const tags = app.metadataCache
-      .getFileCache(file)
-      ?.tags?.map((tag) => tag.tag);
-    if (!tags?.length) continue;
-    cache.push({ file, tags });
+    const tags = getAllTags(app.metadataCache.getCache(file.path)) || [];
+    if (!tags.length) continue;
+
+    if (tags.indexOf(tag.tag) > -1) {
+      result.add(file);
+    }
   }
 
-  return cache;
+  return result;
 }

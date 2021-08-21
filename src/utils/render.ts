@@ -1,5 +1,12 @@
 import { App, TFile } from "obsidian";
 
+function isWindows(): boolean {
+  return navigator.platform.includes("Win");
+}
+function isMetaKey(event: MouseEvent): boolean {
+  if (isWindows()) return event.ctrlKey;
+  return event.metaKey;
+}
 async function openLink(
   app: App,
   dest: string,
@@ -8,7 +15,7 @@ async function openLink(
 ): Promise<void> {
   const destFile = app.metadataCache.getFirstLinkpathDest(dest, currFile.path);
   const mode = (app.vault as any).getConfig("defaultViewMode");
-  const leaf = event.ctrlKey
+  const leaf = isMetaKey(event)
     ? app.workspace.splitActiveLeaf()
     : app.workspace.getUnpinnedLeaf();
   await leaf.openFile(destFile, { active: true, mode });
@@ -25,13 +32,14 @@ export function createLink(
   file: TFile,
   onClick?: (e: MouseEvent) => void
 ): HTMLAnchorElement {
-  const link = document.createElement("a");
+  console.log(navigator.platform);
+  const link = createTextContent("a", file.basename);
   link.style.cursor = "pointer";
-  link.setText(file.basename);
   link.dataset.href = file.path;
   link.classList.add("internal-link");
   link.onclick = (e: MouseEvent) => {
     openLink(app, file.path, file, e);
+
     if (typeof onClick === "function") {
       onClick(e);
     }
@@ -39,18 +47,11 @@ export function createLink(
   return link;
 }
 
-type HeaderType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-export function createHeader(
-  type: HeaderType,
+export function createTextContent<K extends keyof HTMLElementTagNameMap>(
+  element: K,
   content: string
-): HTMLHeadingElement {
-  const header = document.createElement(type);
-  header.setText(content);
-  return header;
-}
-
-export function createParagraph(content: string): HTMLParagraphElement {
-  const paragraph = document.createElement("p");
-  paragraph.setText(content);
-  return paragraph;
+): HTMLElementTagNameMap[K] {
+  const el = document.createElement(element);
+  el.setText(content);
+  return el;
 }
