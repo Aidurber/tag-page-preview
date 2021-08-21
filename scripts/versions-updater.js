@@ -5,7 +5,7 @@ const detectNewline = require("detect-newline");
 module.exports.readVersion = function (contents) {
   const data = JSON.parse(contents);
   const keys = Object.keys(data);
-  return keys[0];
+  return keys[keys.length - 1];
 };
 
 module.exports.writeVersion = function (contents, version) {

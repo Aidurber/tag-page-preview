@@ -7,15 +7,12 @@ const manifestUpdater = {
   updater: require("./scripts/manifest-updater"),
 };
 
+const packageJson = {
+  filename: "package.json",
+  // The `json` updater assumes the version is available under a `version` key in the provided JSON document.
+  type: "json",
+};
 module.exports = {
-  bumpFiles: [
-    {
-      filename: "package.json",
-      // The `json` updater assumes the version is available under a `version` key in the provided JSON document.
-      type: "json",
-    },
-    versionUpdater,
-    manifestUpdater,
-  ],
-  packageFiles: [versionUpdater, manifestUpdater],
+  bumpFiles: [packageJson, versionUpdater, manifestUpdater],
+  packageFiles: [packageJson],
 };
