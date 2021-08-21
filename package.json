@@ -1,6 +1,6 @@
 {
   "name": "tag-page-preview",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Clicking a tag opens a dialog listing pages that use that tag",
   "main": "main.js",
   "license": "MIT",
