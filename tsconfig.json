@@ -1,12 +1,22 @@
 {
   "compilerOptions": {
-    "target": "es2019",
+    "baseUrl": ".",
+    "inlineSourceMap": true,
+    "inlineSources": true,
     "module": "ESNext",
-    "emitDeclarationOnly": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
+    "target": "es6",
+    "allowJs": true,
+    "noImplicitAny": true,
     "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true
+    "importHelpers": true,
+    "lib": [
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015"
+    ]
   },
-  "include": ["src/**/*.ts", "types.d.ts"]
+  "include": [
+    "**/*.ts"
+  ]
 }

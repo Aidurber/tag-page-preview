@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "obsidian-plugin dev src/main.ts",
     "build": "rollup --config rollup.config.js",
+    "release:dry": "standard-version --dry-run",
     "release": "standard-version"
   },
   "devDependencies": {
