@@ -8,7 +8,7 @@ import { Tag } from "../Tag";
  * @returns
  */
 export function getAllFilesMatchingTag(app: App, tag: Tag): Set<TFile> {
-  const files = app.vault.getFiles();
+  const files = app.vault.getMarkdownFiles();
   const result: Set<TFile> = new Set();
   for (let file of files) {
     const tags = getAllTags(app.metadataCache.getCache(file.path)) || [];
