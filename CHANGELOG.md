@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/Aidurber/tag-page-preview/compare/0.0.3...0.0.4) (2021-08-26)
+
+
+### Bug Fixes
+
+* only detect metaKey for macos ([144d6dd](https://github.com/Aidurber/tag-page-preview/commit/144d6dd132818140966b8bafa3695b385e65be91))
+* use getMarkdownFiles instead of getFiles ([d20a8c6](https://github.com/Aidurber/tag-page-preview/commit/d20a8c6a380a0811d6369bbe1414283edf0eabff))
+
 ### [0.0.3](https://github.com/Aidurber/tag-page-preview/compare/0.0.2...0.0.3) (2021-08-21)
 
 ### 0.0.2 (2021-08-21)
