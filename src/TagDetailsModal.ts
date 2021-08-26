@@ -4,14 +4,10 @@ import { getAllFilesMatchingTag } from "./utils/getAllFilesMatchingTag";
 import { createTextContent, createLink } from "./utils/render";
 
 export class TagDetailsModal extends Modal {
-  private tag: Tag;
-  constructor(app: App) {
+  constructor(app: App, private tag: Tag) {
     super(app);
   }
-  setTag(tag: Tag): TagDetailsModal {
-    this.tag = tag;
-    return this;
-  }
+
   onOpen() {
     this.renderContent();
   }
