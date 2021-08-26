@@ -31,9 +31,7 @@ async function openLink(
 ): Promise<void> {
   const destFile = app.metadataCache.getFirstLinkpathDest(dest, currFile.path);
   const mode = (app.vault as any).getConfig("defaultViewMode");
-  const leaf = isMetaKey(event)
-    ? app.workspace.splitActiveLeaf()
-    : app.workspace.getUnpinnedLeaf();
+  const leaf = app.workspace.getLeaf(isMetaKey(event));
   await leaf.openFile(destFile, { active: true, mode });
 }
 /**
