@@ -1,11 +1,11 @@
 import { App, TFile } from "obsidian";
 
 /**
- * Check if the current OS is Windows
+ * Check if the current OS is macOS
  * @returns
  */
-function isWindows(): boolean {
-  return navigator.platform.includes("Win");
+function isMacOS(): boolean {
+  return navigator.platform.startsWith("Mac");
 }
 
 /**
@@ -14,7 +14,7 @@ function isWindows(): boolean {
  * @returns
  */
 function isMetaKey(event: MouseEvent): boolean {
-  return isWindows() ? event.ctrlKey : event.metaKey;
+  return isMacOS() ? event.metaKey : event.ctrlKey;
 }
 /**
  * Open an Obsidian link
