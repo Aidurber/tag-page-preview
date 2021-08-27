@@ -3,8 +3,6 @@ import { Tag } from "./Tag";
 import { TagDetailsModal } from "./TagDetailsModal";
 
 export default class TagPagePreview extends Plugin {
-  private modal: TagDetailsModal;
-
   async onload() {
     this.registerDomEvent(document, "click", (evt: MouseEvent) => {
       this.handleClick(evt.target as HTMLElement);
