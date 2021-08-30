@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/Aidurber/tag-page-preview/compare/0.0.8...0.0.9) (2021-08-30)
+
+
+### Features
+
+* add logic for getting subtags ([658a5e2](https://github.com/Aidurber/tag-page-preview/commit/658a5e2dd5dab65e636d0f4f70b7033a48870717))
+* support viewing parent tags ([2476b52](https://github.com/Aidurber/tag-page-preview/commit/2476b52e72267c9e45acf14a6f3b982393dd8805))
+
 ### [0.0.8](https://github.com/Aidurber/tag-page-preview/compare/0.0.7...0.0.8) (2021-08-30)
 
 
