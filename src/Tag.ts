@@ -17,6 +17,22 @@ export class Tag {
   get tag() {
     return `#${this._text}`;
   }
+
+  /**
+   * Get all subtags for a given tag
+   */
+  get subTags(): Tag[] {
+    return this._text.split("/").reduce((acc, curr, index) => {
+      const previous = index > 0 ? acc[index - 1] : null;
+
+      if (previous) {
+        return [...acc, new Tag(`${previous.raw}/${curr}`)];
+      }
+
+      return [...acc, new Tag(curr)];
+    }, [] as Tag[]);
+  }
+
   /**
    * Determine whether a clicked element was an Obsidian tag
    * @param target - Click target
