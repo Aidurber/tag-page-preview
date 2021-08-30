@@ -37,7 +37,12 @@ export class TagDetailsModal extends Modal {
    */
   private renderLinks(fragment: DocumentFragment, pages: Set<TFile>) {
     const list = document.createElement("ol");
-    for (let page of pages.values()) {
+    const sortedPages = Array.from(pages).sort((a, b) => {
+      if (a.name > b.name) return 1;
+      if (a.name < b.name) return -1;
+      return 0;
+    });
+    for (let page of sortedPages) {
       const el = document.createElement("li");
       const link = createLink(this.app, page, () => this.close());
       el.appendChild(link);
