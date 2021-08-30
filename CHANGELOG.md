@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/Aidurber/tag-page-preview/compare/0.0.4...0.0.7) (2021-08-30)
+
+
+### Bug Fixes
+
+* **pages:** sort pages ([6b7cd59](https://github.com/Aidurber/tag-page-preview/commit/6b7cd59dc051501919ed9fc7cf889c43a5971c07))
+
 ### [0.0.6](https://github.com/Aidurber/tag-page-preview/compare/0.0.5...0.0.6) (2021-08-30)
 
 ### [0.0.5](https://github.com/Aidurber/tag-page-preview/compare/0.0.4...0.0.5) (2021-08-30)
