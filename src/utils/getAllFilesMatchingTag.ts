@@ -12,7 +12,7 @@ export function getAllFilesMatchingTag(app: App, tag: Tag): Set<TFile> {
   const result: Set<TFile> = new Set();
   for (let file of files) {
     const tags = getAllTags(app.metadataCache.getCache(file.path)) || [];
-    if (!tags.length || !tags.includes(tag.tag)) continue;
+    if (!tags.length || tags.indexOf(tag.tag) === -1) continue;
     result.add(file);
   }
 
