@@ -29,6 +29,22 @@ export class Tag {
       target.classList.contains("cm-hashtag")
     );
   }
+
+  static buildTagFromPartial(target: HTMLElement): Tag | null {
+    const tagClass = Array.from(target.classList).find((cls) =>
+      cls.startsWith("cm-tag")
+    );
+    if (!tagClass) return null;
+    const allParts = target.parentNode.querySelectorAll(`.${tagClass}`);
+    if (!allParts.length) return null;
+
+    return new Tag(
+      Array.from(allParts)
+        .map((el) => el.textContent)
+        .join("")
+        .replace("#", "")
+    );
+  }
   /**
    * Generate a Tag from an element
    * @param element - Clicked element
