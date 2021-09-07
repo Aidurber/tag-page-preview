@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/Aidurber/tag-page-preview/compare/0.0.9...0.0.10) (2021-09-07)
+
+
+### Bug Fixes
+
+* explicity check viewstate mode ([d79b4d0](https://github.com/Aidurber/tag-page-preview/commit/d79b4d0a32f01b1c027831a33049e2005779c799))
+* handle underscores in tags ([3ff0a30](https://github.com/Aidurber/tag-page-preview/commit/3ff0a3041ef6371b67b0aa9341dc5afbaed80bef))
+
 ### [0.0.9](https://github.com/Aidurber/tag-page-preview/compare/0.0.8...0.0.9) (2021-08-30)
 
 
