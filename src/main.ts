@@ -14,9 +14,8 @@ export default class TagPagePreview extends Plugin {
     const viewState = this.app.workspace.activeLeaf.getViewState();
     let tag: Tag | null = null;
     const mode = viewState.state?.mode;
-
     // We can have partial tags in source mode
-    if (mode) {
+    if (mode === "source") {
       tag = Tag.buildTagFromPartial(target);
     } else {
       // In preview here, we're dealing with anchors
