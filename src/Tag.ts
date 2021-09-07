@@ -1,3 +1,10 @@
+import { getNextSiblings, getPreviousSiblings } from "./utils/dom";
+
+const START_SELECTOR = "cm-hashtag-begin";
+const START_CLASS = `.${START_SELECTOR}`;
+const END_SELECTOR = "cm-hashtag-end";
+const END_CLASS = `.${END_SELECTOR}`;
+
 export class Tag {
   private _text: string;
   constructor(tag: string) {
@@ -55,19 +62,28 @@ export class Tag {
    * @returns
    */
   static buildTagFromPartial(target: HTMLElement): Tag | null {
-    const tagClass = Array.from(target.classList).find((cls) =>
-      cls.startsWith("cm-tag")
-    );
-    if (!tagClass) return null;
-    const allParts = target.parentNode.querySelectorAll(`.${tagClass}`);
-    if (!allParts.length) return null;
+    /**
+     * In source mode the markup has all of the tag parts in separate tags
+     * <span class="cm-formatting cm-formatting-hashtag cm-hashtag-begin cm-hashtag cm-meta cm-tag-test_tag">#</span>
+     * <span class="cm-hashtag cm-meta">test_</span>
+     * <span class="cm-hashtag cm-meta cm-hashtag-end cm-tag-tag">tag</span>
+     * We need to find the full tag. We can't check the metadata cache because we want to make sure we're clicking on the right
+     * element.
+     */
+    const prevStop = getPreviousSiblings(target, START_CLASS);
+    const nextStop = getNextSiblings(target, END_CLASS);
+    const classes = target.classList;
+    let parts: Element[] = [];
+    if (classes.contains(END_SELECTOR)) {
+      parts = [...prevStop, target];
+    } else if (classes.contains(START_SELECTOR)) {
+      parts = [target, ...nextStop];
+    } else {
+      parts = [...prevStop, target, ...nextStop];
+    }
 
-    return new Tag(
-      Array.from(allParts)
-        .map((el) => el.textContent)
-        .join("")
-        .replace("#", "")
-    );
+    const builtTag = parts.map((part) => part.textContent).join("");
+    return Tag.create(builtTag);
   }
   /**
    * Generate a Tag from an element
