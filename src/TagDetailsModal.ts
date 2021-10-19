@@ -1,6 +1,6 @@
 import { App, Modal, TFile } from "obsidian";
 import { Tag } from "./Tag";
-import { getAllFilesMatchingTag } from "./utils/getAllFilesMatchingTag";
+import { getAllFilesMatchingTag } from "./utils/find-tags";
 import { createTextContent, createLink } from "./utils/render";
 
 function sortFiles(a: TFile, b: TFile): number {
