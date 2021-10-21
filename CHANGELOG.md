@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/Aidurber/tag-page-preview/compare/0.0.10...0.0.11) (2021-10-21)
+
+
+### Features
+
+* add command palette support ([818cbb5](https://github.com/Aidurber/tag-page-preview/commit/818cbb57a88c7affd072033f30223c4ae6d91779))
+
+
+### Bug Fixes
+
+* case insensitive tag finding ([2978a90](https://github.com/Aidurber/tag-page-preview/commit/2978a90eb1e75d6c4463c9429db795d2a56c0a96))
+
 ### [0.0.10](https://github.com/Aidurber/tag-page-preview/compare/0.0.9...0.0.10) (2021-09-07)
 
 
