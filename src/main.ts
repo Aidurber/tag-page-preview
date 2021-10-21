@@ -1,11 +1,19 @@
 import { Plugin } from "obsidian";
 import { Tag } from "./Tag";
 import { TagDetailsModal } from "./TagDetailsModal";
+import { TagInputModal } from "./TagInputModal";
 
 export default class TagPagePreview extends Plugin {
   async onload() {
     this.registerDomEvent(document, "click", (evt: MouseEvent) => {
       this.handleClick(evt.target as HTMLElement);
+    });
+    this.addCommand({
+      id: "open-tag-page-preview-modal",
+      name: "Search",
+      callback: () => {
+        new TagInputModal(this.app).open();
+      },
     });
   }
 
