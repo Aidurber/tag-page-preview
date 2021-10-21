@@ -8,7 +8,8 @@ export function getAllVaultTags(app: App): Set<string> {
     const tags = getAllTags(app.metadataCache.getCache(file.path)) || [];
     if (!tags.length) continue;
     for (let tag of tags) {
-      result.add(tag);
+      // Lower case tags as get fetch them
+      result.add(tag.toLocaleLowerCase());
     }
   }
   return result;
