@@ -8,7 +8,8 @@ const END_CLASS = `.${END_SELECTOR}`;
 export class Tag {
   private _text: string;
   constructor(tag: string) {
-    this._text = tag;
+    const clean = tag.replace("#", "").toLocaleLowerCase();
+    this._text = clean;
   }
 
   /**
@@ -94,7 +95,7 @@ export class Tag {
     if (element instanceof Tag) return element;
     const content: string =
       typeof element === "string" ? element : element.textContent;
-    return new Tag(content.replace("#", ""));
+    return new Tag(content);
   }
 
   /**
