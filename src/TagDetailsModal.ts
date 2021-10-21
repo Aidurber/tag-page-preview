@@ -1,6 +1,6 @@
 import { App, Modal, TFile } from "obsidian";
 import { Tag } from "./Tag";
-import { getAllFilesMatchingTag } from "./utils/getAllFilesMatchingTag";
+import { getAllFilesMatchingTag } from "./utils/find-tags";
 import { createTextContent, createLink } from "./utils/render";
 
 function sortFiles(a: TFile, b: TFile): number {
@@ -34,7 +34,7 @@ export class TagDetailsModal extends Modal {
     const tag = this.tag;
     const pages = getAllFilesMatchingTag(this.app, tag);
     const fragment = document.createDocumentFragment();
-    fragment.appendChild(createTextContent("h2", `Pages with ${tag.tag}`));
+    fragment.createEl("h2", { text: `Pages with ${tag.tag}` });
 
     if (this.originalTag.hasSubTags) {
       this.renderSubTagScope(fragment);
@@ -70,15 +70,13 @@ export class TagDetailsModal extends Modal {
    * @param pages - Pages containing the selected tag
    */
   private renderLinks(fragment: DocumentFragment, pages: Set<TFile>) {
-    const list = document.createElement("ol");
+    const list = fragment.createEl("ul");
     const sortedPages = Array.from(pages).sort(sortFiles);
     for (let page of sortedPages) {
-      const el = document.createElement("li");
+      const li = list.createEl("li");
       const link = createLink(this.app, page, () => this.close());
-      el.appendChild(link);
-      fragment.appendChild(el);
+      li.appendChild(link);
     }
-    fragment.appendChild(list);
   }
 
   /**
@@ -86,8 +84,6 @@ export class TagDetailsModal extends Modal {
    * @param fragment - Document fragment to add content to
    */
   private renderEmptyContent(fragment: DocumentFragment) {
-    fragment.appendChild(
-      createTextContent("p", "There are no pages containing this tag")
-    );
+    fragment.createEl("p", "There are no pages containing this tag");
   }
 }
