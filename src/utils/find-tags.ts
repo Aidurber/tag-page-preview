@@ -14,6 +14,11 @@ export function getAllVaultTags(app: App): Set<string> {
   }
   return result;
 }
+
+function hasTag(tags: string[], value: string): boolean {
+  if (!tags.length || !Array.isArray(tags)) return false;
+  return tags.some((v) => v.toLocaleLowerCase() === value.toLocaleLowerCase());
+}
 /**
  * Returns a Set of files that contain a given tag
  * @param app - Obsidian app object
@@ -25,8 +30,9 @@ export function getAllFilesMatchingTag(app: App, tag: Tag): Set<TFile> {
   const result: Set<TFile> = new Set();
   for (let file of files) {
     const tags = getAllTags(app.metadataCache.getCache(file.path)) || [];
-    if (!tags.length || tags.indexOf(tag.tag) === -1) continue;
-    result.add(file);
+    if (hasTag(tags, tag.tag)) {
+      result.add(file);
+    }
   }
 
   return result;
