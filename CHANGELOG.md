@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/Aidurber/tag-page-preview/compare/0.0.11...0.0.12) (2021-11-04)
+
+
+### Bug Fixes
+
+* correctly compare tags ([585483c](https://github.com/Aidurber/tag-page-preview/commit/585483c6d932fb5c8f54015d002ea09e49a5dcb1))
+
 ### [0.0.11](https://github.com/Aidurber/tag-page-preview/compare/0.0.10...0.0.11) (2021-10-21)
 
 
