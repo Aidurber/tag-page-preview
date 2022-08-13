@@ -1,3 +1,7 @@
+# ⚠️ Notice
+I'm unable to find the time to keep this repository well maintained, and up-to-date with Obsidian. Life gets in the way. This plugin should be forked/rebuilt by someone who is willing to find the time to build a plugin that the Obsidian community deserves. 
+
+
 # Tag Page Preview
 
 Clicking a tag opens a dialog listing pages that use that tag.
